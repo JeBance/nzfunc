@@ -15,6 +15,19 @@ module.exports.hasJsonStructure = function (string) {
 	return false;
 };
 
+module.exports.hasPGPstructure = function (string) {
+	if (typeof string !== 'string') return false;
+	try {
+		if ((data.slice(0,27) === '-----BEGIN PGP MESSAGE-----')
+		&& (data.slice((data.length - 26),-1) === '-----END PGP MESSAGE-----')) {
+			return true;
+		}
+	} catch(e) {
+//		console.log(e);
+	}
+	return false;
+};
+
 module.exports.getHASH = function (string, algorithm) {
 	let hash = crypto.createHash('md5').update(string).digest('hex');
 	return hash;
