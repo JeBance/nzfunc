@@ -18,8 +18,8 @@ module.exports.hasJsonStructure = function (string) {
 module.exports.hasPGPstructure = function (string) {
 	if (typeof string !== 'string') return false;
 	try {
-		if ((data.slice(0,27) === '-----BEGIN PGP MESSAGE-----')
-		&& (data.slice((data.length - 26),-1) === '-----END PGP MESSAGE-----')) {
+		if ((string.slice(0,27) === '-----BEGIN PGP MESSAGE-----')
+		&& (string.slice((string.length - 26),-1) === '-----END PGP MESSAGE-----')) {
 			return true;
 		}
 	} catch(e) {
