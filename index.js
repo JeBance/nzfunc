@@ -19,7 +19,7 @@ module.exports.hasPGPstructure = function (string) {
 	if (typeof string !== 'string') return false;
 	try {
 		if ((string.slice(0,27) === '-----BEGIN PGP MESSAGE-----')
-		&& (string.slice((string.length - 26),-1) === '-----END PGP MESSAGE-----')) {
+		&& (string.slice(string.length - 25) === '-----END PGP MESSAGE-----')) {
 			return true;
 		}
 	} catch(e) {
