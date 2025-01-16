@@ -16,16 +16,15 @@ module.exports.hasJsonStructure = function (string) {
 };
 
 module.exports.hasPGPstructure = function (string) {
-	if (typeof string !== 'string') return false;
 	try {
-		if ((string.slice(0,27) === '-----BEGIN PGP MESSAGE-----')
-		&& (string.slice(string.length - 25) === '-----END PGP MESSAGE-----')) {
-			return true;
-		}
+		if (typeof string !== 'string') throw new Error('parameter not string');
+		if (string.indexOf('-----BEGIN PGP MESSAGE-----') != -1) throw new Error('no begin');
+		if (string.indexOf('-----END PGP MESSAGE-----') != -1) throw new Error('no end');
+		return true;
 	} catch(e) {
-//		console.log(e);
+		// console.log(e);
+		return false;
 	}
-	return false;
 };
 
 module.exports.getHASH = function (string, algorithm) {
